@@ -1,6 +1,6 @@
 package com.example.fundamental_submission2_iman.detailActivity
 
-
+import FollowAdapter
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -15,7 +15,7 @@ import com.google.android.material.tabs.TabLayoutMediator
 
 class DetailUserActivity : AppCompatActivity() {
 
-    private lateinit var detalBinding: ActivityDetailUserBinding
+    private lateinit var detailBinding: ActivityDetailUserBinding
     private lateinit var viewModel: DetailViewModel
 
 
@@ -29,12 +29,10 @@ class DetailUserActivity : AppCompatActivity() {
 
     }
 
-
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        detalBinding = ActivityDetailUserBinding.inflate(layoutInflater)
-        setContentView(detalBinding.root)
+        detailBinding = ActivityDetailUserBinding.inflate(layoutInflater)
+        setContentView(detailBinding.root)
 
         val actionbar = supportActionBar
         actionbar?.title = "Detail User"
@@ -49,8 +47,8 @@ class DetailUserActivity : AppCompatActivity() {
         viewModel.setUserDetail(username)
         Log.d("Detail", "username: $username")
 
-        viewModel.getUserDetail().observe(this, {
-            detalBinding.apply {
+        viewModel.getUserDetail().observe(this) {
+            detailBinding.apply {
                 Glide.with(this@DetailUserActivity)
                     .load(it.avatar_url)
                     .centerCrop()
@@ -64,8 +62,7 @@ class DetailUserActivity : AppCompatActivity() {
                 tvFollowers.text = "${it.followers}"
                 tvFollowing.text = "${it.following}"
             }
-        })
-
+        }
 
         val followAdapter = FollowAdapter(this, bundle)
         val viewPager: ViewPager2 = findViewById(R.id.view_pager)
@@ -76,11 +73,10 @@ class DetailUserActivity : AppCompatActivity() {
         }.attach()
         supportActionBar?.elevation = 0f
 
-        detalBinding.btnShare.setOnClickListener {
+        detailBinding.btnShare.setOnClickListener {
             val share = Intent(Intent.ACTION_SEND)
             share.type = "text/plain"
-            val link =
-                "https://github.com/$username"
+            val link = "https://github.com/$username"
             share.putExtra(Intent.EXTRA_SUBJECT, "More Info ")
             share.putExtra(Intent.EXTRA_TEXT, link)
             startActivity(Intent.createChooser(share, "Share to"))

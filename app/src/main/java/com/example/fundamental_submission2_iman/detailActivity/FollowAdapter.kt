@@ -1,5 +1,3 @@
-package com.example.fundamental_submission2_iman.detailActivity
-
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment

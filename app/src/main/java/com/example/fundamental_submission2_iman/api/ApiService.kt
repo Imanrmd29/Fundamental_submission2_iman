@@ -14,28 +14,23 @@ interface ApiService {
     @GET("search/users")
     @Headers("Authorization: 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")
     fun getUser(
-        @Query("q") query: String
-    ): Call<UserModel>
+        @Query("q") query: String): Call<UserModel>
 
 
     @GET("users/{username}")
     @Headers("Authorization: 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")
     fun getUserDetail(
-        @Path("username") username: String
-    ): Call<DetailuserModel>
+        @Path("username") username: String): Call<DetailuserModel>
 
 
     @GET("users/{username}/followers")
     @Headers("Authorization: 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")
     fun getUserFollowers(
-        @Path("username") username: String
-    ): Call<ArrayList<User>>
+        @Path("username") username: String): Call<ArrayList<User>>
 
 
     @GET("users/{username}/following")
     @Headers("Authorization: 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")
     fun getUserFollowing(
-        @Path("username") username: String
-    ): Call<ArrayList<User>>
-
+        @Path("username") username: String): Call<ArrayList<User>>
 }

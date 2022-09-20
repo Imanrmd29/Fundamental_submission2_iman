@@ -44,8 +44,7 @@ class MainActivity : AppCompatActivity() {
 
         })
 
-        viewModel = ViewModelProvider(this,
-            ViewModelProvider.NewInstanceFactory()).get(MainViewModel::class.java)
+        viewModel = ViewModelProvider(this, ViewModelProvider.NewInstanceFactory())[MainViewModel::class.java]
 
 
         binding.apply {
@@ -73,13 +72,13 @@ class MainActivity : AppCompatActivity() {
 
         }
 
-        viewModel.getListUsers().observe(this, {
+        viewModel.getListUsers().observe(this) {
             if (it != null) {
                 adapter.setList(it)
                 showLoading(false)
 
             }
-        })
+        }
 
     }
 
