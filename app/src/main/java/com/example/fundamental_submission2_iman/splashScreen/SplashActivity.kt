@@ -8,10 +8,12 @@ import com.example.fundamental_submission2_iman.R.layout.activity_splash
 import com.example.fundamental_submission2_iman.mainActivity.MainActivity
 
 @SuppressLint("CustomSplashScreen")
-    class SplashActivity : AppCompatActivity() {
-        override fun onCreate(savedInstanceState: Bundle?) {
-            super.onCreate(savedInstanceState)
-            setContentView(activity_splash)
+class SplashActivity : AppCompatActivity() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(activity_splash)
+
+        supportActionBar?.hide()
 
         val splash = Thread {
             try {
@@ -19,7 +21,7 @@ import com.example.fundamental_submission2_iman.mainActivity.MainActivity
             } catch (e: InterruptedException) {
                 e.printStackTrace()
             } finally {
-                val intent = Intent (this@SplashActivity, MainActivity::class.java)
+                val intent = Intent(this@SplashActivity, MainActivity::class.java)
                 startActivity(intent)
             }
         }

@@ -27,7 +27,6 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-
         val actionbar = supportActionBar
         actionbar?.title = "Search User"
 
